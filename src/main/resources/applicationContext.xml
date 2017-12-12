@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <import resource="classpath:applicationHibernate.xml"/>
+    <!--事务配置-->
+    <bean class="org.springframework.orm.hibernate5.HibernateTransactionManager" id="transactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="add*"/>
+            <tx:method name="insert*"/>
+            <tx:method name="delete*"/>
+            <tx:method name="update*"/>
+        </tx:attributes>
+    </tx:advice>
+    <aop:config>
+        <aop:pointcut id="pl" expression="execution(* org.jack.service.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pl"/>
+    </aop:config>
+
+    <!--由于Action是在每次请求时都创建一个新的，所以这里需要手动设置scope属性-->
+    <bean class="org.jack.action.HelloAction" id="helloAction" scope="prototype"/>
+</beans>

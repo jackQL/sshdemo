@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="classpath:applicationHibernate.xml"/>
+    <!--Hibernate核心配置文件分为三大块
+        1.数据库配置
+        2.Hibernate信息配置
+        3.映射文件配置信息
+    -->
+    <bean class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" id="sessionFactory">
+        <!--1.数据库配置-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--2.Hibernate信息配置-->
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL57Dialect</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+            </props>
+        </property>
+        <!-- 3.映射文件配置信息-->
+        <property name="mappingResources">
+            <list>
+                <value>org/jack/model/User.hbm.xml</value>
+            </list>
+        </property>
+    </bean>
+</beans>
