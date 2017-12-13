@@ -5,13 +5,24 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
+    <constant name="struts.multipart.maxSize" value="5242880"></constant>
     <!--http://localhost:8080/index-->
-    <package name="hellocemo" namespace="/" extends="struts-default">
+    <package name="hellodemo" namespace="/" extends="struts-default">
         <action name="index" class="helloAction" method="index">
             <result name="index">/WEB-INF/jsp/index.jsp</result>
         </action>
-        <action name="user_*" class="helloAction" method="{1}">
+        <action name="reg" class="helloAction" method="reg">
             <result name="reg">/WEB-INF/jsp/reg.jsp</result>
+        </action>
+        <action name="doReg" class="helloAction" method="doReg">
+            <result name="login" >/WEB-INF/jsp/login.jsp</result>
+        </action>
+        <action name="doLogin" method="doLogin" class="helloAction">
+            <result name="login">/WEB-INF/jsp/login.jsp</result>
+            <result name="index" type="redirectAction">index</result>
+        </action>
+        <action name="login" method="login" class="helloAction">
+            <result name="login">/WEB-INF/jsp/login.jsp</result>
         </action>
     </package>
 </struts>

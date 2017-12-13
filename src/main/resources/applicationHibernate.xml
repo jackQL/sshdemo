@@ -3,7 +3,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <import resource="classpath:applicationHibernate.xml"/>
+    <import resource="classpath:applicationDatasource.xml"/>
     <!--Hibernate核心配置文件分为三大块
         1.数据库配置
         2.Hibernate信息配置

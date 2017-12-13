@@ -8,16 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>REG</title>
+    <title>LOGIN</title>
 </head>
 <body>
 
-<form action="/doReg" method="post" enctype="multipart/form-data">
+<form action="/doLogin" method="post">
     name:<input type="text" name="username"><br>
     password:<input type="password" name="password"><br>
-    address:<input type="text" name="address"><br>
-    photo:<input type="file" name="photo">
-    <input type="submit" value="reg"><input type="reset" value="reset">
+    <input type="submit" value="login"><input type="reset" value="reset">
 </form>
 </body>
 </html>

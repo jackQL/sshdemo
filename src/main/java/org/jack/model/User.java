@@ -8,6 +8,15 @@ public class User {
     private String password;
     private String address;
     private Long id;
+    private String userphoto;
+
+    public String getUserphoto() {
+        return userphoto;
+    }
+
+    public void setUserphoto(String userphoto) {
+        this.userphoto = userphoto;
+    }
 
     public String getUsername() {
         return username;
